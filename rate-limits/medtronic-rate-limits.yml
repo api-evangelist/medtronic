@@ -4,83 +4,48 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Medtronic
 providerId: medtronic
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Healthcare
   - Medical Devices
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Medtronic API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Medtronic's developer portal is approval-gated and does not publish numeric per-second or
+  per-minute API rate limits on the public site. Limits are configured per partner / per program (e.g.
+  CareLink, diabetes data platform, EHR integration) and surfaced inside the developer portal once an
+  application is approved. Clinical-data integrations are additionally constrained by HIPAA / GDPR
+  controls and the device's regulatory clearance.
+notes: |
+  No public RPS / RPM numbers documented. Set reconciled=true once a program's documented per-partner
+  ceiling can be referenced.
+sources:
+  - https://developer.medtronic.com/
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
+  - name: Program-scoped API limit
+    scope: program/partner
+    metric: varies
+    limit: 'configured per partner inside developer portal'
     applies:
       - Medtronic API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Medtronic API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Medtronic API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Medtronic API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Medtronic API
+    notes: Each Medtronic developer program (CareLink, diabetes platform, EHR) sets its own per-partner
+      throughput; consumers should consult their program manager.
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Use exponential backoff with jitter on transient errors and honor Retry-After when
+      present.
+  - name: Idempotency
+    description: Use unique transaction IDs for state-changing requests against clinical and device
+      records to safely retry across timeouts without duplicating clinical events.
+  - name: HIPAA / GDPR Controls
+    description: Clinical-data integrations operate under HIPAA (US) and GDPR (EU) controls; integrations
+      must respect data-minimization, consent scope, and audit obligations defined in the program's
+      data-processing agreement.
+  - name: Regulatory Boundary
+    description: APIs that touch FDA-regulated device function sit inside the device's cleared intended
+      use; integrations must not extend beyond that scope without appropriate regulatory pathway.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
