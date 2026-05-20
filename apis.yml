@@ -26,6 +26,10 @@ apis:
     description: >-
       The Medtronic API provides access to platform services and data for enterprise integration and automation.
 common:
+  - type: GitHubOrganization
+    url: https://github.com/Medtronic
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/medtronic
   - type: Website
     url: https://www.medtronic.com
 maintainers:
