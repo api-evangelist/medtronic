@@ -2,7 +2,19 @@ aid: medtronic
 url: https://raw.githubusercontent.com/api-evangelist/medtronic/refs/heads/main/apis.yml
 name: Medtronic
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/medtronic.png
 tags:
   - Healthcare
   - Medical Devices
