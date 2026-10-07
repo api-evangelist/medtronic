@@ -123,10 +123,8 @@ apis:
 unitEconomics:
   - name: Cost per Connected Device
     metric: program_cost / connected_devices
-    target: TBD
   - name: Cost per Patient Record
     metric: program_cost / patient_records
-    target: TBD
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
