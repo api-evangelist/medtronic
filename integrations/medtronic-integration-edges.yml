@@ -61,6 +61,71 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-medtech.py
   first_seen: '2026-10-18'
+- partner_name: IHE International (Connectathon)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://connectathon-results.ihe.net/company-details?companykeyw=MEDTRONIC
+  category: IHE Connectathon tested integration profiles
+  contract_reference:
+    register: IHE Connectathon Global Results (connectathon-results.ihe.net, custom search table)
+    standard: IHE integration profiles (IHE Technical Frameworks)
+    spec_file: null
+    role: ihe-connectathon-tested-vendor
+    registered_name: Medtronic
+    register_id: MEDTRONIC
+    matched_domain: medtronic.com
+    matched_by: domain+name-among-holders
+    first_connectathon: 2010
+    latest_connectathon: 2021
+    editions_sample:
+    - North America 2021
+    - North America 2020
+    - North America 2019
+    - North America 2018
+    - North America 2014
+    certified_products:
+    - product: IHE Connectathon tested profiles (Cardiology)
+      ihe_domain: Cardiology
+      latest_connectathon: 2013
+      lapsed: true
+      profiles_sample:
+      - IDCO
+    - product: IHE Connectathon tested profiles (Devices)
+      ihe_domain: Devices
+      latest_connectathon: 2019
+      lapsed: true
+      profiles_sample:
+      - ACM
+      - DEC
+      - MEMLS
+    - product: IHE Connectathon tested profiles (IT Infrastructure)
+      ihe_domain: IT Infrastructure
+      latest_connectathon: 2021
+      lapsed: true
+      profiles_sample:
+      - CT
+      - MHD
+      - PDQm
+    - product: IHE Connectathon tested profiles (Radiology)
+      ihe_domain: Radiology
+      latest_connectathon: 2014
+      lapsed: true
+      profiles_sample:
+      - ARI
+      - SWF
+    signal_note: certified_products = one entry per IHE DOMAIN with tested profiles, never per profile, actor or
+      year; lapsed when the domain's latest Connectathon is older than three years (< 2023). Profiles, actors and
+      editions are context, never counted
+    detected_by: sweep-medical-imaging-ihe.py
+    detected: '2026-10-20'
+    identity: wikidata Q642189 'Medtronic plc' P856 https://www.medtronic.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-medical-imaging-ihe.py
+  first_seen: '2026-10-20'
 generated: '2026-10-15'
 method: searched
 source:
@@ -73,3 +138,5 @@ checked:
 - https://raw.githubusercontent.com/18F/fedramp-data/4b73d9247fd6360759960e4690e3ce4ca858e0fa/data/data.json
 - https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/suppliers
 - https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices
+- https://connectathon-results.ihe.net/custom-search/
+- https://product-registry.ihe.net/
