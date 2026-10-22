@@ -360,6 +360,72 @@ edges:
     detected: '2026-10-21'
   detected_by: sweep-uk-g-cloud-suppliers.py
   first_seen: '2026-10-21'
+- partner_name: Health Canada (Medical Device Licence)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://health-products.canada.ca/api/medical-devices/company/?id=114663&lang=en&type=json
+  category: Canadian medical device licence
+  contract_reference:
+    register: Health Canada Medical Devices Active Licence Listing (MDALL) public API (health-products.canada.ca/api/medical-devices)
+    standard: Canada Medical Devices Regulations (SOR/98-282), Medical Device Licence
+    spec_file: null
+    role: licence-holder
+    registered_name: MEDTRONIC INC.
+    register_country: US
+    register_id: https://health-products.canada.ca/api/medical-devices/company/?id=114663&lang=en&type=json
+    company_status: A
+    matched_domain: medtronic.com
+    matched_by: domain+name-among-holders
+    certified_products:
+    - product: Health Canada Medical Device Licence, Class II
+      product_type: Class II
+      risk_class: 2
+      lapsed: false
+      first_issued: '1998-09-30'
+      conditional: false
+      licences_sample:
+      - '''J'' GUIDE WIRE'
+      - 5492 A-V PATIENT CABLES
+      - ABLATION CATHETER TO EP RECORDING SYSTEM CABLE
+      - ACCUMIST BLOWER/MISTER
+      - ACCURHYTHM AI ECG CLASSIFICATION SYSTEM
+    - product: Health Canada Medical Device Licence, Class III
+      product_type: Class III
+      risk_class: 3
+      lapsed: false
+      first_issued: '1999-02-01'
+      conditional: false
+      licences_sample:
+      - 5873C SERVICE KIT
+      - ABRE VENOUS SELF-EXPANDING STENT SYSTEM
+      - ACCESS REVIEW THERAPY CONTROLLER
+      - ACT II SYSTEM
+      - ACT PLUS
+    - product: Health Canada Medical Device Licence, Class IV
+      product_type: Class IV
+      risk_class: 4
+      lapsed: false
+      first_issued: '1998-12-03'
+      conditional: false
+      licences_sample:
+      - 5392 DUAL CHAMBER TEMPORARY EXTERNAL PACEMAKER
+      - ACHIEVE ADVANCE MAPPING CATHETER
+      - ACHIEVE MAPPING CATHETER
+      - ACTIVA PC MULTI-PROGRAM NEUROSTIMULATOR FOR DEEP BRAIN STIMULATION
+      - ACTIVA RC MULTI-PROGRAM RECHARGEABLE NEUROSTIMULATOR FOR DEEP BRAIN STIMULATION
+    signal_note: certified_products = one entry per device RISK CLASS licensed by Health Canada, lapsed when no
+      licence of that class is still issued (status I / D, no end date); licence names are a sample, licence and
+      device counts are context, never counted
+    detected_by: sweep-canada-medical-device-licensing.py
+    detected: '2026-10-22'
+    identity: wikidata Q642189 'Medtronic plc' P856 https://www.medtronic.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-canada-medical-device-licensing.py
+  first_seen: '2026-10-22'
 generated: '2026-10-15'
 method: searched
 source:
@@ -384,3 +450,5 @@ checked:
 - https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-14/suppliers
 - https://www.crowncommercial.gov.uk/agreements
 - https://www.ncsc.gov.uk/cyberessentials/search
+- https://health-products.canada.ca/api/medical-devices/company/?lang=en&type=json
+- https://health-products.canada.ca/api/medical-devices/licence/?lang=en&type=json
